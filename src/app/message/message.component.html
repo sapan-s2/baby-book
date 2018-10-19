@@ -4,5 +4,6 @@
 
     <textarea id="message" style="margin-left: 10%" rows="30" cols="100" matInput  [(ngModel)]="message" name="message"></textarea>
   </div>
-  <button type="button" (click)="submitMessage()">Submit</button>
+  <button type="button" (click)="submitMessageForUser(message,'email')">SubmitForOwner</button>
+  <button type="button" (click)="submitMessageForPublic(message,'email')">SubmitForPublic</button>
   </form>
