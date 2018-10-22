@@ -7,6 +7,9 @@ import {ConfirmComponent} from './confirm/confirm.component';
 import {MessageComponent} from './message/message.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -20,16 +23,21 @@ const appRoutes: Routes = [
     AppComponent,
     ConfirmComponent,
     MessageComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(
       appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
