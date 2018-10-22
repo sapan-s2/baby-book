@@ -1,20 +1,20 @@
-<div class=" example-container">
+<div class=" mui-form">
 
 <form>
-  <h2 mdl-button mdl-js-button mdl-button--icon> Please save your Message - Greetings: </h2>
+  <legend mdl-button mdl-js-button mdl-button--icon> Please save your Message - Greetings: </legend>
   <!--<mat-form-field>-->
-    <div class="">
+    <div class="mui-text-field">
 
 
-      <mdl-textfield id="message" style="margin-left: 10%" rows="30" cols="100"
+      <textarea id="message"  rows="20" cols="40"
                 matInput  [(ngModel)]="message"
                 name="message"
                      floating-label
-      ></mdl-textfield>
+      ></textarea>
     </div>
   <!--</mat-form-field>-->
-  <button type="button" (click)="submitMessageForUser(message,'email')">SubmitForOwner</button>
-  <button type="button" (click)="submitMessageForPublic(message,'email')">SubmitForPublic</button>
+  <button class="mui-btn mui-btn-raised" type="button" (click)="submitMessageForUser(message,'email')">SubmitForOwner</button>
+  <button class="mui-btn mui-btn-raised"type="button" (click)="submitMessageForPublic(message,'email')">SubmitForPublic</button>
 </form>
 </div>
 

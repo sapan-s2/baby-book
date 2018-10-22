@@ -7,8 +7,8 @@ import {ConfirmComponent} from './confirm/confirm.component';
 import {MessageComponent} from './message/message.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const appRoutes: Routes = [
