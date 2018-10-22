@@ -27,7 +27,7 @@ export class MessagesService {
     const objectObservable = this.http.post<MessageModel>(baseUrl, messageModel,
       this.httpOptions)
       .pipe(
-        tap((msg: MessageModel) => this.log(`added message =${msg.get_message()}`)),
+        tap((msg: MessageModel) => this.log(`added message =`+ msg)),
         catchError(this.handleError<MessageModel>('addmesage'))
       );
     this.messages.push(messageModel);
