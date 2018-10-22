@@ -10,19 +10,45 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  FacebookLoginProvider,
+} from 'angular-6-social-login';
+import {SigninComponent} from './signin/signin.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: SigninComponent},
   {path: 'home', component: MessageComponent},
   {path: 'confirm', component: ConfirmComponent},
 
 ];
 
+export function getAuthServiceConfigs() {
+  // const appid = '341272116607588'; //for local
+  const appid = '431056247424521'; // for prod
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider(appid)
+      },
+      // {
+      //   id: GoogleLoginProvider.PROVIDER_ID,
+      //   provider: new GoogleLoginProvid("Your-Google-Client-Id")
+      // },
+    ]
+);
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmComponent,
-    MessageComponent
+    MessageComponent,
+    SigninComponent,
 
   ],
   imports: [
@@ -33,9 +59,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
