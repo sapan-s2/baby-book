@@ -28,7 +28,7 @@ export class MessageComponent implements OnInit {
     this.messageService.addMesage(this.messageModel).subscribe(
       data => console.log(data)
     );
-    // this.router.navigate(['/confirm']);
+    this.router.navigate(['/confirm']);
   }
 
   submitMessageForPublic(message, email): void {
@@ -37,7 +37,7 @@ export class MessageComponent implements OnInit {
     this.messageModel.set_emailId( email);
     this.messageService.addMesage(this.messageModel).subscribe(      data => console.log(data)
   );
-    // this.router.navigate(['/confirm']);
+    this.router.navigate(['/confirm']);
   }
 
 }
