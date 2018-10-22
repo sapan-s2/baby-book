@@ -1,9 +1,20 @@
-<form>
-  <h2> Please save your Message - Greetings: </h2>
-  <div class="">
+<div class=" example-container">
 
-    <textarea id="message" style="margin-left: 10%" rows="30" cols="100" matInput  [(ngModel)]="message" name="message"></textarea>
-  </div>
+<form>
+  <h2 mdl-button mdl-js-button mdl-button--icon> Please save your Message - Greetings: </h2>
+  <!--<mat-form-field>-->
+    <div class="">
+
+
+      <mdl-textfield id="message" style="margin-left: 10%" rows="30" cols="100"
+                matInput  [(ngModel)]="message"
+                name="message"
+                     floating-label
+      ></mdl-textfield>
+    </div>
+  <!--</mat-form-field>-->
   <button type="button" (click)="submitMessageForUser(message,'email')">SubmitForOwner</button>
   <button type="button" (click)="submitMessageForPublic(message,'email')">SubmitForPublic</button>
-  </form>
+</form>
+</div>
+
