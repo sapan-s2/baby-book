@@ -16,8 +16,8 @@
       ></textarea>
     </div>
   <!--</mat-form-field>-->
-  <button class="mui-btn mui-btn-raised" type="button" (click)="submitMessageForUser(message,'email')">SubmitForOwner</button>
-  <button class="mui-btn mui-btn-raised"type="button" (click)="submitMessageForPublic(message,'email')">SubmitForPublic</button>
+  <button class="mui-btn mui-btn-raised" type="button" (click)="submitMessageForUser(message,userDataForSession.emailId)">SubmitForOwner</button>
+  <button class="mui-btn mui-btn-raised"type="button" (click)="submitMessageForPublic(message,userDataForSession.emailId)">SubmitForPublic</button>
 </form>
 </div>
 
