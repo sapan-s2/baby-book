@@ -26,7 +26,7 @@ const appRoutes: Routes = [
 ];
 
 export function getAuthServiceConfigs() {
-  // const appid = '341272116607588'; //for local
+  // const appid = '341272116607588'; // for local
   const appid = '431056247424521'; // for prod
   const config = new AuthServiceConfig(
     [

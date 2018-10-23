@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {    AuthService as SocialAuthService,    FacebookLoginProvider} from 'angular-6-social-login';
+import {Component, OnInit} from '@angular/core';
+import {AuthService as SocialAuthService, FacebookLoginProvider} from 'angular-6-social-login';
 import {Router} from '@angular/router';
+import {UserDataService} from './service/user-data.service';
+import {UserData} from './model/UserData';
+import {embeddedViewEnd} from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-signin',
@@ -9,8 +12,10 @@ import {Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  constructor( private socialAuthService: SocialAuthService,
-               private router: Router) {}
+  constructor(private socialAuthService: SocialAuthService,
+              private router: Router,
+              private userDataService: UserDataService) {
+  }
 
   ngOnInit() {
   }
@@ -21,21 +26,14 @@ export class SigninComponent implements OnInit {
       (userData) => {
 
         console.log(userData.email);
+        this.sendToRestApiMethod(userData.email, userData.name);
         this.router.navigate(['home']);
-        // this.sendToRestApiMethod(userData.token);
       }
     );
   }
 
-//   sendToRestApiMethod(token: string) : void {
-//     this.http.post('/login/facebook', { token: token } }
-// .subscribe(onSuccess => {
-//   //login was successful
-// }, onFail => {
-//   //login was unsuccessful
-//   //show an error message
-// }
-// );
-// }
+  sendToRestApiMethod(name: string, email: string): void {
+    this.userDataService.setUserDataForSession(name, email);
+  }
 
 }

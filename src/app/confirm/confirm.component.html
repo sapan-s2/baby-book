@@ -1,3 +1,7 @@
-<p>
-  Message Added, Thank You!
+<div class=" mui-form" *ngIf="userDataForSession.name === undefined">
+  user is not logged in ,  <a  routerLink="/login"> Login</a>
+</div>
+
+<p *ngIf="userDataForSession.name !== undefined && userDataForSession.name.length !== 0 ">
+  Message Added, Thank You - {{userDataForSession.name}}!
 </p>
