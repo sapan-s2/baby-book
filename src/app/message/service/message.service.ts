@@ -34,10 +34,6 @@ export class MessagesService {
     return objectObservable;
   }
 
-  clear() {
-    this.messages = [];
-  }
-
   private getBaseUrl() {
     return this.BASE_URL;
   }
@@ -58,6 +54,10 @@ export class MessagesService {
 
   private log(log: string) {
     this.logmessageSevice.add(`messageService: ${log}`);
+  }
+
+  clear() {
+    this.messages = [];
   }
 
 }

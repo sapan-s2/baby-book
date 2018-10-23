@@ -16,12 +16,14 @@ import {
   FacebookLoginProvider,
 } from 'angular-6-social-login';
 import {SigninComponent} from './signin/signin.component';
+import { WallComponent } from './wall/wall.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: SigninComponent},
   {path: 'home', component: MessageComponent},
   {path: 'confirm', component: ConfirmComponent},
+  {path: 'wall', component: WallComponent},
 
 ];
 
@@ -49,6 +51,7 @@ export function getAuthServiceConfigs() {
     ConfirmComponent,
     MessageComponent,
     SigninComponent,
+    WallComponent,
 
   ],
   imports: [

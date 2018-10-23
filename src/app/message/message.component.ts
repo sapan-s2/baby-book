@@ -27,20 +27,23 @@ export class MessageComponent implements OnInit {
     this.userDataForSession = this.usrDataService.getUserDataForSession();
   }
 
-  submitMessageForUser(message, email): void {
+  submitMessageForUser(message, email, name): void {
     this.messageModel = new MessageModel();
     this.messageModel.set_message(message);
     this.messageModel.set_emailId(email);
+    this.messageModel.set_userName(name);
     this.messageService.addMesage(this.messageModel).subscribe(
       data => console.log(data)
     );
     this.router.navigate(['/confirm']);
   }
 
-  submitMessageForPublic(message, email): void {
+  submitMessageForPublic(message, email, name): void {
     this.messageModel = new MessageModel();
     this.messageModel.set_message(message);
     this.messageModel.set_emailId(email);
+    this.messageModel.set_userName(name);
+
     this.messageService.addMesage(this.messageModel).subscribe(data => console.log(data)
     );
     this.router.navigate(['/confirm']);
