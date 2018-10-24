@@ -16,13 +16,15 @@
    <div   class="container"
           fxLayout
           fxLayout.xs="column"
+          fxLayout.sm="column"
           fxLayoutAlign="center"
           fxLayoutGap="10px"
-          fxLayoutGap.xs="0"
+          fxLayoutGap.sm="1"
           *ngFor="let item of wallData.data.Items  ">
-     <label class="item item-1" fxFlex>{{item.user_name}}</label>
-     <label class="item item-2" fxFlex>{{item.message}}</label>
-     <label class="item item-3" fxFlex>{{item.user_email_id}}</label>
+
+     <label style="border: 1px solid black" class="item item-1 mat-form-field" fxFlex>{{item.user_name}}</label>
+     <label style="border: 1px solid black" class="item item-2" fxFlex>{{item.message}}</label>
+     <label style="border: 1px solid black" class="item item-3" fxFlex>{{item.user_email_id}}</label>
 
    </div>
 
