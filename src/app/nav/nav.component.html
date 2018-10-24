@@ -1,0 +1,12 @@
+  <!--<nav *ngIf="userDataForSession.emailId !== undefined">-->
+     <!--<a routerLink="/home"> Home</a>-->
+     <!--<a routerLink="/wall"> Wall </a>-->
+  <!--</nav>-->
+
+
+  <ul *ngIf="userDataForSession.emailId !== undefined">
+    <li><a class="" routerLink="/home">Home</a></li>
+    <li><a routerLink= "/wall">Wall</a></li>
+    <li><a routerLink= "/privacy">Privacy</a></li>
+    <li><a routerLink= "/contact">Contact Us</a></li>
+  </ul>

@@ -2,6 +2,7 @@ export  class  MessageModel{
 
   private message;
   private emailId;
+  private userName;
 
 
   get_message() {
@@ -18,5 +19,13 @@ export  class  MessageModel{
 
   set_emailId(value) {
     this.emailId = value;
+  }
+
+  get_userName() {
+    return this.userName;
+  }
+
+  set_userName(value) {
+    this.userName = value;
   }
 }

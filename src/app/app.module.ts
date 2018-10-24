@@ -16,12 +16,20 @@ import {
   FacebookLoginProvider,
 } from 'angular-6-social-login';
 import {SigninComponent} from './signin/signin.component';
+import { WallComponent } from './wall/wall.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { NavComponent } from './nav/nav.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: SigninComponent},
   {path: 'home', component: MessageComponent},
   {path: 'confirm', component: ConfirmComponent},
+  {path: 'wall', component: WallComponent},
+  {path: 'privacy', component: PrivacyPolicyComponent},
+  {path: 'contact', component: ContactUsComponent},
 
 ];
 
@@ -49,7 +57,10 @@ export function getAuthServiceConfigs() {
     ConfirmComponent,
     MessageComponent,
     SigninComponent,
-
+    WallComponent,
+    PrivacyPolicyComponent,
+    NavComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +71,9 @@ export function getAuthServiceConfigs() {
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [{
     provide: AuthServiceConfig,

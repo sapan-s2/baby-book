@@ -1,0 +1,29 @@
+<!--<p>-->
+
+  <!--Messages <br>-->
+
+
+  <!---->
+  <!---->
+<!--</p>-->
+
+<div class=" mui-form" *ngIf="userDataForSession.emailId === undefined">
+  user is not logged in ,  <a  routerLink="/login"> Login</a>
+</div>
+<div class=" mui-form" *ngIf=" wallData !== undefined && wallData.data !== undefined && userDataForSession.emailId !== undefined">
+  <!--{{ wallData.data.Items[0].message}}-->
+
+   <div   class="container"
+          fxLayout
+          fxLayout.xs="column"
+          fxLayoutAlign="center"
+          fxLayoutGap="10px"
+          fxLayoutGap.xs="0"
+          *ngFor="let item of wallData.data.Items  ">
+     <label class="item item-1" fxFlex>{{item.user_name}}</label>
+     <label class="item item-2" fxFlex>{{item.message}}</label>
+     <label class="item item-3" fxFlex>{{item.user_email_id}}</label>
+
+   </div>
+
+</div>

@@ -1,36 +1,35 @@
-import {Injectable} from '@angular/core';
-import {MessageModel} from '../model/MessageModel';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import { Injectable } from '@angular/core';
 import {catchError, tap} from 'rxjs/internal/operators';
+import {Observable, of} from 'rxjs';
+import {MessageModel} from '../../message/model/MessageModel';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LogMessageServiceService} from '../../log-message-service.service';
+import {WallData} from '../model/WallData';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
+export class WallService {
 
-  messages: MessageModel[] = [];
-  private BASE_URL = 'https://xfm0ap2hk3.execute-api.us-east-2.amazonaws.com/test/greeter';
+  private BASE_URL = 'https://xfm0ap2hk3.execute-api.us-east-2.amazonaws.com/test/greeter/all';
 
   constructor(private http: HttpClient,
-              private logmessageSevice: LogMessageServiceService) {
+              private logmessageSevice: LogMessageServiceService) { }
 
-  }
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  addMesage(messageModel: MessageModel): Observable<MessageModel> {
+  getAllMessages(): Observable<any> {
     const baseUrl = this.getBaseUrl();
-    const objectObservable = this.http.post<MessageModel>(baseUrl, messageModel,
+    const objectObservable = this.http.get<WallData>(baseUrl,
       this.httpOptions)
       .pipe(
-        tap((msg: MessageModel) => this.log(`added message =`+ msg)),
-        catchError(this.handleError<MessageModel>('addmesage'))
+        tap((msg: WallData) => this.log(`get message =`+ msg)),
+        catchError(this.handleError<WallData>('getWalldata'))
       );
-    this.messages.push(messageModel);
+    // this.messages.push(messageModel);
     return objectObservable;
   }
 
@@ -55,9 +54,4 @@ export class MessagesService {
   private log(log: string) {
     this.logmessageSevice.add(`messageService: ${log}`);
   }
-
-  clear() {
-    this.messages = [];
-  }
-
 }
