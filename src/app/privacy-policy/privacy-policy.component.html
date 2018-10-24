@@ -1,4 +1,8 @@
-<p>
+<div class=" mui-form" *ngIf="userDataForSession.emailId === undefined">
+  User is not logged in ,  <a  routerLink="/login"> Please Click here to Login</a>
+</div>
 
-  <a href="https://app.termly.io/document/privacy-policy/8db0f9f6-e1f8-40c6-a0de-b7557cf7939e"> privacy-policy</a>
+<p  *ngIf = "userDataForSession.emailId !== undefined">
+
+  <a href="https://app.termly.io/document/privacy-policy/8db0f9f6-e1f8-40c6-a0de-b7557cf7939e"> Please click here to view privacy-policy</a>
 </p>

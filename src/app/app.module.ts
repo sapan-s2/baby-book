@@ -20,6 +20,7 @@ import { WallComponent } from './wall/wall.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -28,12 +29,13 @@ const appRoutes: Routes = [
   {path: 'confirm', component: ConfirmComponent},
   {path: 'wall', component: WallComponent},
   {path: 'privacy', component: PrivacyPolicyComponent},
+  {path: 'contact', component: ContactUsComponent},
 
 ];
 
 export function getAuthServiceConfigs() {
-  const appid = '341272116607588'; // for local
-  // const appid = '431056247424521'; // for prod
+  // const appid = '341272116607588'; // for local
+  const appid = '431056247424521'; // for prod
   const config = new AuthServiceConfig(
     [
       {
@@ -58,6 +60,7 @@ export function getAuthServiceConfigs() {
     WallComponent,
     PrivacyPolicyComponent,
     NavComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
