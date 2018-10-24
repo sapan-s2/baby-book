@@ -17,6 +17,7 @@ import {
 } from 'angular-6-social-login';
 import {SigninComponent} from './signin/signin.component';
 import { WallComponent } from './wall/wall.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'home', component: MessageComponent},
   {path: 'confirm', component: ConfirmComponent},
   {path: 'wall', component: WallComponent},
+  {path: 'privacy', component: PrivacyPolicyComponent},
 
 ];
 
@@ -52,6 +54,7 @@ export function getAuthServiceConfigs() {
     MessageComponent,
     SigninComponent,
     WallComponent,
+    PrivacyPolicyComponent,
 
   ],
   imports: [
