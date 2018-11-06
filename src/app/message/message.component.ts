@@ -33,9 +33,11 @@ export class MessageComponent implements OnInit {
     this.messageModel.set_emailId(email);
     this.messageModel.set_userName(name);
     this.messageService.addMesage(this.messageModel).subscribe(
-      data => console.log(data)
-    );
+      data => { console.log(data);
     this.router.navigate(['/confirm']);
+      },
+      err =>     this.router.navigate(['/confirm'])
+  );
   }
 
   submitMessageForPublic(message, email, name): void {

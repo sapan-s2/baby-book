@@ -10,11 +10,11 @@
 <div class=" mui-form" *ngIf="userDataForSession.emailId === undefined">
   user is not logged in , <a routerLink="/login"> Login</a>
 </div>
-<div class=" mui-form"
+<div class=" mui-form" style="margin-top: 2%"
      *ngIf=" wallData !== undefined && wallData.data !== undefined && userDataForSession.emailId !== undefined">
   <!--{{ wallData.data.Items[0].message}}-->
 
-  <div  style="border: 1px solid black"
+  <div  style="border: 1px solid black "
   class="container"
        fxLayout
        fxLayout.xs="column"

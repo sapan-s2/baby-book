@@ -2,7 +2,7 @@
   user is not logged in ,  <a  routerLink="/login"> Login</a>
 </div>
 
-<p *ngIf="userDataForSession.name !== undefined && userDataForSession.name.length !== 0 ">
+<p style="margin-top: 2%" *ngIf="userDataForSession.name !== undefined && userDataForSession.name.length !== 0 ">
   Message Added, Thank You - {{userDataForSession.name}}!
 </p>
 
