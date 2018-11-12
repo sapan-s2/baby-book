@@ -21,6 +21,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   {path: 'wall', component: WallComponent},
   {path: 'privacy', component: PrivacyPolicyComponent},
   {path: 'contact', component: ContactUsComponent},
+  {path: 'gallery', component: GalleryComponent},
 
 ];
 
@@ -61,6 +63,7 @@ export function getAuthServiceConfigs() {
     PrivacyPolicyComponent,
     NavComponent,
     ContactUsComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
