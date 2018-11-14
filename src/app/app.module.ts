@@ -8,7 +8,7 @@ import {MessageComponent} from './message/message.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   SocialLoginModule,
@@ -72,6 +72,7 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     SocialLoginModule,
     BrowserAnimationsModule,
