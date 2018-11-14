@@ -27,11 +27,13 @@ export class MessageComponent implements OnInit {
     this.userDataForSession = this.usrDataService.getUserDataForSession();
   }
 
-  submitMessageForUser(message, email, name): void {
+  submitMessageForUser(message, email, name, imageUrl): void {
     this.messageModel = new MessageModel();
     this.messageModel.set_message(message);
     this.messageModel.set_emailId(email);
     this.messageModel.set_userName(name);
+    this.messageModel.set_userProfileURL(imageUrl);
+    this.messageModel.set_userProfileURLSource('Facebook');
     this.messageService.addMesage(this.messageModel).subscribe(
       data => { console.log(data);
     this.router.navigate(['/confirm']);
@@ -40,12 +42,12 @@ export class MessageComponent implements OnInit {
   );
   }
 
-  submitMessageForPublic(message, email, name): void {
+  submitMessageForPublic(message, email, name, imageUrl): void {
     this.messageModel = new MessageModel();
     this.messageModel.set_message(message);
     this.messageModel.set_emailId(email);
     this.messageModel.set_userName(name);
-
+    this.messageModel.set_userProfileURL(imageUrl);
     this.messageService.addMesage(this.messageModel).subscribe(data => console.log(data)
     );
     this.router.navigate(['/confirm']);

@@ -1,11 +1,3 @@
-<!--<p>-->
-
-<!--Messages <br>-->
-
-
-<!---->
-<!---->
-<!--</p>-->
 
 <div class=" mui-form" *ngIf="userDataForSession.emailId === undefined">
   user is not logged in , <a routerLink="/login"> Login</a>
@@ -24,9 +16,10 @@
        fxLayoutGap.sm="1"
        *ngFor="let item of wallData.data.Items  ">
     <!--<div style="border: 1px solid black">-->
-      <label class="item item-1 mat-form-field" fxFlex>{{item.user_name}}</label>
-      <label class="item item-2" fxFlex>{{item.message}}</label>
-      <label class="item item-3" fxFlex>{{item.user_email_id}}</label>
+    <img src={{item.user_profile_url}}  width="42" height="42">
+    <label class="item item-1 mat-form-field" fxFlex> <span style="color: #3f51b5"><b><u>{{item.user_name}}  </u> </b> : </span> <app-read-more [text] =  "item.message"   [maxLength]="150"> </app-read-more> </label>
+      <!--<label class="item item-2" fxFlex>{{item.message}}</label>-->
+      <!--<label class="item item-3" fxFlex>{{item.user_email_id}}</label>-->
     <!--</div>-->
   </div>
 
