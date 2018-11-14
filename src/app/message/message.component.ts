@@ -16,10 +16,12 @@ export class MessageComponent implements OnInit {
   messageModel: MessageModel;
   messageModels: MessageModel[];
   userDataForSession: UserData;
+  title: string;
 
   constructor(private router: Router,
               private messageService: MessagesService,
               private usrDataService: UserDataService) {
+    this.title = 'Sia';
 
   }
 
