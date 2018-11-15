@@ -26,14 +26,14 @@ export class SigninComponent implements OnInit {
       (userData) => {
 
         console.log(userData.email);
-        this.sendToRestApiMethod(userData.email, userData.name);
+        this.sendToRestApiMethod(userData.email, userData.name, userData.image);
         this.router.navigate(['home']);
       }
     );
   }
 
-  sendToRestApiMethod(name: string, email: string): void {
-    this.userDataService.setUserDataForSession(name, email);
+  sendToRestApiMethod(name: string, email: string, imageURL: string): void {
+    this.userDataService.setUserDataForSession(name, email, imageURL);
   }
 
 }

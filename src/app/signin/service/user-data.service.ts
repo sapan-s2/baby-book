@@ -12,9 +12,10 @@ export class UserDataService {
     this.userData = new UserData();
   }
 
-  public setUserDataForSession(email: string, name: string): UserData {
+  public setUserDataForSession(email: string, name: string, imageURL: string): UserData {
     this.userData.emailId = email;
     this.userData.name = name;
+    this.userData.imageURL = imageURL;
     return  this.userData;
   }
 

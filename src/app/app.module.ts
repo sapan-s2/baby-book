@@ -8,7 +8,7 @@ import {MessageComponent} from './message/message.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   SocialLoginModule,
@@ -21,6 +21,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ReadMoreComponent } from './read-more/read-more.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -61,6 +62,7 @@ export function getAuthServiceConfigs() {
     PrivacyPolicyComponent,
     NavComponent,
     ContactUsComponent,
+    ReadMoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     SocialLoginModule,
     BrowserAnimationsModule,
