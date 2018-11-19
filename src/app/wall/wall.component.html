@@ -8,11 +8,12 @@
 
 
 
-
+<div class="row">
   <select   class="mdb-select md-form custom-select" style="float: right" (change)= this[($event.target.value)]() >
     <option value=getAllMessagesByTime  selected >sort by Date</option>
     <option value=getAllMessagesByuser >sort by user</option>
   </select>
+</div>
 
   <div  style="border: 1px solid black"
   class="container"
