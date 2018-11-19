@@ -7,16 +7,16 @@
   <!--{{ wallData.data.Items[0].message}}-->
 
 
-
+<div class="container">
 <div class="row">
-  <select   class="mdb-select md-form custom-select" style="float: right" (change)= this[($event.target.value)]() >
+  <select   class="mdb-select md-form custom-select"  (change)= this[($event.target.value)]() >
     <option value=getAllMessagesByTime  selected >sort by Date</option>
     <option value=getAllMessagesByuser >sort by user</option>
   </select>
 </div>
 
   <div  style="border: 1px solid black"
-  class="container"
+  class="row"
        fxLayout
        fxLayout.xs="column"
        fxLayout.sm="column"
@@ -31,5 +31,5 @@
       <!--<label class="item item-3" fxFlex>{{item.user_email_id}}</label>-->
     <!--</div>-->
   </div>
-
+</div>
 </div>
