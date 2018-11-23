@@ -3,24 +3,33 @@
   user is not logged in , <a routerLink="/login"> Login</a>
 </div>
 <div class=" mui-form" style="margin-top: 2%"
-     *ngIf=" wallData !== undefined && wallData.data !== undefined && userDataForSession.emailId !== undefined">
+     *ngIf=" wallData !== undefined &&  userDataForSession.emailId !== undefined">
   <!--{{ wallData.data.Items[0].message}}-->
 
-  <div  style="border: 1px solid black "
-  class="container"
+
+<div class="container">
+<div class="row">
+  <select   class="mdb-select md-form custom-select"  (change)= this[($event.target.value)]() >
+    <option value=getAllMessagesByTime  selected >sort by Date</option>
+    <option value=getAllMessagesByuser >sort by user</option>
+  </select>
+</div>
+
+  <div  style="border: 1px solid black"
+  class="row"
        fxLayout
        fxLayout.xs="column"
        fxLayout.sm="column"
        fxLayoutAlign="center"
        fxLayoutGap="10px"
        fxLayoutGap.sm="1"
-       *ngFor="let item of wallData.data.Items  ">
+       *ngFor="let item of wallData  ">
     <!--<div style="border: 1px solid black">-->
     <img src={{item.user_profile_url}}  width="42" height="42">
-    <label class="item item-1 mat-form-field" fxFlex> <span style="color: #3f51b5"><b><u>{{item.user_name}}  </u> </b> : </span> <app-read-more [text] =  "item.message"   [maxLength]="150"> </app-read-more> </label>
+    <label class="item item-1 mat-form-field" fxFlex> <span style="color: #3f51b5"><b><u>{{item.user_name}} : {{item.time | date: 'dd/MM/yyyy HH:mm'}}  </u> </b> : </span> <app-read-more [text] =  "item.message"   [maxLength]="150"> </app-read-more> </label>
       <!--<label class="item item-2" fxFlex>{{item.message}}</label>-->
       <!--<label class="item item-3" fxFlex>{{item.user_email_id}}</label>-->
     <!--</div>-->
   </div>
-
+</div>
 </div>

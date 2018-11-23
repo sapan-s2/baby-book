@@ -21,12 +21,32 @@ export class WallComponent implements OnInit {
 
   ngOnInit() {
     this.userDataForSession = this.usrDataService.getUserDataForSession();
-    this.getAllMessages();
+    this.getAllMessagesByTime();
   }
 
-  getAllMessages() {
+  getAllMessagesByTime() {
     this.wallService.getAllMessages()
-      .subscribe( data =>  this.wallData = data);
+      .subscribe( data => {
+        this.wallData =
+        data.data.Items.sort(( a,b ) =>
+        {
+        return  new Date( a.time) == new Date (b.time) ? 0
+                       : new Date (a.time)  < new Date (b.time) ? 1 : -1
+      }
+
+      )
+
+  });
   }
 
-}
+  getAllMessagesByuser() {
+    this.wallService.getAllMessages()
+      .subscribe( data => {
+        this.wallData =
+        data.data.Items.sort(( a,b ) =>
+          { return  a.user_name.localeCompare(b.user_name)}
+      )
+  });
+  }
+
+  }
