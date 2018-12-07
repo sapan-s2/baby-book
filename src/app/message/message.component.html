@@ -17,8 +17,10 @@
                      floating-label
       ></textarea>
 
-      <div class="col-sm-4">  <legend (click)="setAutoTemplate()"> <a> Click here for some AutoTemplates </a></legend>
-        <select *ngIf="autoTemplate" (change)="onSelect($event.target.value)" multiple class="  form-control" id="exampleFormControlSelect2">
+      <div class="col-sm-4">
+        <legend>Sample auto template</legend>
+        <span>(Select to populate message with auto template)</span>
+        <select (change)="onSelect($event.target.value)" multiple class="  form-control" id="exampleFormControlSelect2">
           <option *ngFor="let msg of toppingList" value= {{msg.messageText}}>
             {{msg.messageText}}
           </option>
