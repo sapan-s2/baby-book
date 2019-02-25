@@ -73,7 +73,4 @@ export class MessageComponent implements OnInit {
      this.message = value;
   }
 
-  setAutoTemplate() {
-    this.autoTemplate = true;
-  }
 }
