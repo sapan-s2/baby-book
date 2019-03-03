@@ -18,7 +18,10 @@ export class WallService {
 
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'lastevaluated-key': 'begin'
+    }),
   };
 
   getAllMessages(): Observable<any> {
@@ -26,7 +29,7 @@ export class WallService {
     const objectObservable = this.http.get<WallData>(baseUrl,
       this.httpOptions)
       .pipe(
-        tap((msg: WallData) => this.log(`get message =`+ msg)),
+        tap((msg: WallData) => this.log(`get message =` +  msg)),
         catchError(this.handleError<WallData>('getWalldata'))
       );
     // this.messages.push(messageModel);
