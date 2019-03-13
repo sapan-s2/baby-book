@@ -1,27 +1,21 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
-import {ConfirmComponent} from './confirm/confirm.component';
-import {MessageComponent} from './message/message.component';
-import {RouterModule, Routes} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  FacebookLoginProvider,
-} from 'angular-6-social-login';
-import {SigninComponent} from './signin/signin.component';
-import { WallComponent } from './wall/wall.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import { NavComponent } from './nav/nav.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ReadMoreComponent } from './read-more/read-more.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {AppComponent} from "./app.component";
+import {FormsModule} from "@angular/forms";
+import {ConfirmComponent} from "./confirm/confirm.component";
+import {MessageComponent} from "./message/message.component";
+import {RouterModule, Routes} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from "angular-6-social-login";
+import {SigninComponent} from "./signin/signin.component";
+import {WallComponent} from "./wall/wall.component";
+import {PrivacyPolicyComponent} from "./privacy-policy/privacy-policy.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {NavComponent} from "./nav/nav.component";
+import {ContactUsComponent} from "./contact-us/contact-us.component";
+import {ReadMoreComponent} from "./read-more/read-more.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},

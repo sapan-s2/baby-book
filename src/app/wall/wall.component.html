@@ -9,7 +9,8 @@
 
   <div class={{loader}}></div>
 
-<div class="container">
+<div class="container parentDiv" (scroll)= 'scrolled($event)' (click)='facebookLogin()'>
+  <!--<div class="innerDiv">-->
 <div class="row">
   <select   class="mdb-select md-form custom-select"  (change)= this[($event.target.value)]() >
     <option value=getAllMessagesByTime  selected >sort by Date</option>
@@ -33,5 +34,6 @@
       <!--<label class="item item-3" fxFlex>{{item.user_email_id}}</label>-->
     <!--</div>-->
   </div>
+  <!--</div>-->
 </div>
 </div>

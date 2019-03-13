@@ -33,3 +33,19 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+.parentDiv
+{
+  /*background-color: pink;*/
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.innerDiv
+{
+  /*background-color: yellow;*/
+  height: 90%;
+  /*width: 50%;*/
+}

@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 export class LogMessageServiceService {
 
 
-  logData: string[] = [];
+  logData: any[] = [];
 
   constructor() { }
 
-  add(message: string) {
+  add(message: any) {
     this.logData.push(message);
   }
 

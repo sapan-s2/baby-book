@@ -29,6 +29,7 @@
     "angular5-social-login": "^1.0.9",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "ngx-scroll-event": "^1.0.8",
     "path": "^0.12.7",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.2.1",

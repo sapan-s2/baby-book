@@ -24,12 +24,36 @@ export class WallService {
     }),
   };
 
-  getAllMessages(): Observable<any> {
+  createHeaders(key) {
+    if( key === 'begin'){
+      return {
+
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'lastevaluated-key': key
+        }),
+
+      };
+    }
+      return {
+
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'lastevaluated-key': JSON.stringify(key)
+        }),
+
+      };
+    }
+
+
+
+
+  getAllMessages(key): Observable<any> {
     const baseUrl = this.getBaseUrl();
     const objectObservable = this.http.get<WallData>(baseUrl,
-      this.httpOptions)
+      this.createHeaders(key))
       .pipe(
-        tap((msg: WallData) => this.log(`get message =` +  msg)),
+        tap((msg: WallData) => this.log( msg)),
         catchError(this.handleError<WallData>('getWalldata'))
       );
     // this.messages.push(messageModel);
@@ -54,7 +78,7 @@ export class WallService {
     };
   }
 
-  private log(log: string) {
-    this.logmessageSevice.add(`messageService: ${log}`);
+  private log(log: any) {
+    this.logmessageSevice.add( log);
   }
 }
