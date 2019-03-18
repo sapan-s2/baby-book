@@ -108,7 +108,7 @@ export class WallComponent implements OnInit {
   {
     this.previousKey = this.key;
     this.key = this.lastEvaluatedKey;
-    this.key= ""
+    // this.key= ""
     // this.getAllMessagesByTime1(this.lastEvaluatedKey);
 
     this.wallService.getAllMessages(this.lastEvaluatedKey)
@@ -135,12 +135,11 @@ export class WallComponent implements OnInit {
       });
     // alert(" reached End " +o1.target.documentElement.scrollTop + " + " + o1.currentTarget.innerHeight+ " == " +o1.target.documentElement.offsetHeight);
   }
-  if(o1.target.documentElement.scrollTop == 1)
-  {
-    // alert("Reached Top ");
+  if(o1.target.documentElement.scrollTop === 0  ) {
+   // alert?("Reached Top ");
     if(this.previousKey !== undefined)
-      this.key = this.previousKey
-    this.wallService.getAllMessages(this.key)
+      // this.key = this.previousKey
+    this.wallService.getAllMessages(this.previousKey)
       .subscribe( data => {
         if( data !== undefined && data.data !== undefined) {
           if (data.data.LastEvaluatedKey !== undefined) {
