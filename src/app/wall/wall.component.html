@@ -2,14 +2,14 @@
 <div class=" mui-form" *ngIf="userDataForSession.emailId === undefined">
   user is not logged in , <a routerLink="/login"> Login</a>
 </div>
-<div class=" mui-form" style="margin-top: 2%"
+<div class=" mui-form"  (scroll)= 'scrolled($event)'  style="margin-top: 2%"
      *ngIf=" wallData !== undefined &&  userDataForSession.emailId !== undefined">
   <!--{{ wallData.data.Items[0].message}}-->
 
 
   <div class={{loader}}></div>
 
-<div class="container parentDiv" (scroll)= 'scrolled($event)' (click)='facebookLogin()'>
+<div class="container parentDiv" (click)='facebookLogin()'>
   <!--<div class="innerDiv">-->
 <div class="row">
   <select   class="mdb-select md-form custom-select"  (change)= this[($event.target.value)]() >

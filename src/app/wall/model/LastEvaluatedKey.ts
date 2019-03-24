@@ -2,24 +2,32 @@ import {WallItems} from './WallItems';
 
 export class LastEvaluatedKey {
 
-  private _year: number;
-  private _epoch: string
+  private year: number;
+  private epoch: string
 
 
-  get year(): number {
+  constructor(year: number, epoch: string) {
+    this.year = year;
+    this.epoch = epoch;
+  }
+
+  getYear(): number {
     return this._year;
   }
 
-  set year(value: number) {
+  setYear(value: number) {
     this._year = value;
   }
 
-  get epoch(): string {
+  getEpoch(): string {
     return this._epoch;
   }
 
-  set epoch(value: string) {
+  setEpoch(value: string) {
     this._epoch = value;
   }
+
+
+
 }
 
