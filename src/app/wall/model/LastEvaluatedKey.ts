@@ -12,19 +12,19 @@ export class LastEvaluatedKey {
   }
 
   getYear(): number {
-    return this._year;
+    return this.year;
   }
 
   setYear(value: number) {
-    this._year = value;
+    this.year = value;
   }
 
   getEpoch(): string {
-    return this._epoch;
+    return this.epoch;
   }
 
   setEpoch(value: string) {
-    this._epoch = value;
+    this.epoch = value;
   }
 
 
