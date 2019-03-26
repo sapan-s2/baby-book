@@ -25,7 +25,7 @@ export class WallComponent implements OnInit, OnDestroy {
     this.wallData  = new WallData();
     this.loader = 'loader';
     this.key = 'begin';
-    this.lastEvaluatedKey = new LastEvaluatedKey();
+    // this.lastEvaluatedKey = new LastEvaluatedKey();
   }
 
   ngOnInit() {
@@ -72,14 +72,14 @@ getAllMessagesByTime1(key) {
         else{
           this.lastEvaluatedKey = undefined;
         }
-        let wallDataOld = this.wallData;
+        let wallDataLatest = this.wallData;
         let wallDataNew =
           data.data.Items.sort((a, b) => {
               return new Date(a.time) == new Date(b.time) ? 0
                 : new Date(a.time) < new Date(b.time) ? 1 : -1
             }
           )
-        this.wallData = [...wallDataNew, ...wallDataOld];
+        this.wallData = [...wallDataLatest, ...wallDataNew];
       }
       this.loader = 'false';
     });
@@ -87,15 +87,23 @@ getAllMessagesByTime1(key) {
 
 getAllMessagesByuser() {
   this.loader = 'loader';
-  this.wallService.getAllMessages(this.key)
-    .subscribe( data => {
-      this.wallData =
-        data.data.Items.sort(( a,b ) =>
-          { return  a.user_name.localeCompare(b.user_name)}
-        )
-      this.loader = 'false';
+   let wallDataTemp = this.wallData;
+  // this.wallService.getAllMessages(this.key)
+  //   .subscribe( data => {
+  //     this.wallData =
+  //       data.data.Items.sort(( a,b ) =>
+  //         { return  a.user_name.localeCompare(b.user_name)}
+  //       )
+  //     this.loader = 'false';
+  //
+  //   });
 
-    });
+  this.wallData = wallDataTemp.sort((a,b) => {
+    { return  a.user_name.localeCompare(b.user_name)}
+  }
+
+)
+  this.loader = 'false';
 }
 
 // public handleScroll(event: ScrollEvent) {
