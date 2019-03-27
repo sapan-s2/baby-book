@@ -6,8 +6,7 @@
      *ngIf=" wallData !== undefined &&  userDataForSession.emailId !== undefined">
   <!--{{ wallData.data.Items[0].message}}-->
 
-
-  <div class={{loader}}></div>
+  <div *ngIf ="loader === 'loader'" class=loader> </div>
 
 <div class="container parentDiv" (click)='facebookLogin()'>
   <!--<div class="innerDiv">-->

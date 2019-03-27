@@ -3,7 +3,7 @@ import {WallService} from './service/wall.service';
 import {WallData} from './model/WallData';
 import {UserDataService} from '../signin/service/user-data.service';
 import {UserData} from '../signin/model/UserData';
-import {LastEvaluatedKey} from "./model/LastEvaluatedKey";
+import {LastEvaluatedKey} from './model/LastEvaluatedKey';
 // import { ScrollEvent } from 'ngx-scroll-event'
 
 @Component({
@@ -15,10 +15,11 @@ export class WallComponent implements OnInit, OnDestroy {
 
   wallData: any;
   userDataForSession: UserData;
-  loader: string = 'loader';
+  loader = 'loader';
   lastEvaluatedKey: LastEvaluatedKey;
   key;
   previousKey;
+  toggleTimeAndUser;
 
   constructor(private wallService: WallService,
               private usrDataService: UserDataService) {
@@ -34,7 +35,7 @@ export class WallComponent implements OnInit, OnDestroy {
     // window.addEventListener('scroll', this.populate, true);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     window.removeEventListener('scroll', this.populate, true);
   }
 
@@ -44,20 +45,21 @@ getAllMessagesByTime() {
   this.loader = 'loader';
   this.wallService.getAllMessages(this.key)
     .subscribe( data => {
-      if( data !== undefined && data.data !== undefined) {
+      if ( data !== undefined && data.data !== undefined) {
         if (data.data.LastEvaluatedKey !== undefined) {
-          this.lastEvaluatedKey = new LastEvaluatedKey(data.data.LastEvaluatedKey.year,data.data.LastEvaluatedKey.epoch)
+          this.lastEvaluatedKey = new LastEvaluatedKey(data.data.LastEvaluatedKey.year, data.data.LastEvaluatedKey.epoch);
           // this.lastEvaluatedKey.epoch = data.data.LastEvaluatedKe.epoch;
           // this.lastEvaluatedKey.year = data.data.LastEvaluatedKe.year;
         }
         this.wallData =
           data.data.Items.sort((a, b) => {
               return new Date(a.time) == new Date(b.time) ? 0
-                : new Date(a.time) < new Date(b.time) ? 1 : -1
+                : new Date(a.time) < new Date(b.time) ? 1 : -1;
             }
-          )
+          );
       }
       this.loader = 'false';
+      this.toggleTimeAndUser = 'time' ;
     });
 }
 
@@ -65,45 +67,59 @@ getAllMessagesByTime1(key) {
   this.loader = 'loader';
   this.wallService.getAllMessages(key)
     .subscribe( data => {
-      if( data !== undefined && data.data !== undefined) {
+      if ( data !== undefined && data.data !== undefined) {
         if (data.data.LastEvaluatedKey !== undefined) {
           this.lastEvaluatedKey = data.data.LastEvaluatedKey;
-        }
-        else{
+        } else {
           this.lastEvaluatedKey = undefined;
         }
-        let wallDataLatest = this.wallData;
-        let wallDataNew =
+        const wallDataLatest = this.wallData;
+        const wallDataNew =
           data.data.Items.sort((a, b) => {
-              return new Date(a.time) == new Date(b.time) ? 0
-                : new Date(a.time) < new Date(b.time) ? 1 : -1
+              return new Date(a.time) === new Date(b.time) ? 0
+                : new Date(a.time) < new Date(b.time) ? 1 : -1;
             }
-          )
+          );
         this.wallData = [...wallDataLatest, ...wallDataNew];
       }
       this.loader = 'false';
+      this.toggleTimeAndUser = 'time' ;
     });
 }
 
-getAllMessagesByuser() {
-  this.loader = 'loader';
-   let wallDataTemp = this.wallData;
-  // this.wallService.getAllMessages(this.key)
-  //   .subscribe( data => {
-  //     this.wallData =
-  //       data.data.Items.sort(( a,b ) =>
-  //         { return  a.user_name.localeCompare(b.user_name)}
-  //       )
-  //     this.loader = 'false';
-  //
-  //   });
-
-  this.wallData = wallDataTemp.sort((a,b) => {
-    { return  a.user_name.localeCompare(b.user_name)}
+  getAllMessagesByUserScroll(key) {
+    this.loader = 'loader';
+    this.wallService.getAllMessages(this.key)
+      .subscribe( data => {
+        if ( data !== undefined && data.data !== undefined) {
+          if (data.data.LastEvaluatedKey !== undefined) {
+            this.lastEvaluatedKey = data.data.LastEvaluatedKey;
+          } else {
+            this.lastEvaluatedKey = undefined;
+          }
+          const wallDataLatest = this.wallData;
+          const wallDataNew =
+            data.data.Items.sort((a, b) => {
+              return  a.user_name.localeCompare(b.user_name);
+              }
+            );
+          this.wallData = [...wallDataLatest, ...wallDataNew];
+        }
+        this.loader = 'false';
+        this.toggleTimeAndUser = 'user' ;
+      });
   }
 
-)
+getAllMessagesByuser() {
+  this.loader = 'loader';
+   const wallDataTemp = this.wallData;
+  this.wallData = wallDataTemp.sort((a, b) => {
+    { return  a.user_name.localeCompare(b.user_name); }
+  }
+
+);
   this.loader = 'false';
+  this.toggleTimeAndUser = 'user' ;
 }
 
 // public handleScroll(event: ScrollEvent) {
@@ -123,17 +139,16 @@ getAllMessagesByuser() {
   @HostListener('window:scroll', ['$event'])
 populate() {
     while (true) {
-      let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-      if (windowRelativeBottom > document.documentElement.clientHeight + 100)
+      const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
+      if (windowRelativeBottom > document.documentElement.clientHeight + 100) {
         break;
-      else if (this.lastEvaluatedKey === undefined) {
-        console.log("breaking with lastEvaluatedKey === undefined" + this.lastEvaluatedKey)
+      } else if (this.lastEvaluatedKey === undefined) {
+        console.log('breaking with lastEvaluatedKey === undefined' + this.lastEvaluatedKey);
         break;
-      }
-      else {
-        console.log("in pouplate for next data" + this.lastEvaluatedKey);
+      } else {
+        console.log('in pouplate for next data' + this.lastEvaluatedKey);
         this.previousKey = this.key;
-        let key1 = this.lastEvaluatedKey;
+        const key1 = this.lastEvaluatedKey;
         this.lastEvaluatedKey = undefined;
         // document.body.insertAdjacentHTML("beforeend", `<p> {{this.getAllMessagesByTime1(key1)}} </p>`);}
         this.getAllMessagesByTime1(key1);
