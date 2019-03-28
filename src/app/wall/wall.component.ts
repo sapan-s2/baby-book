@@ -4,7 +4,6 @@ import {WallData} from './model/WallData';
 import {UserDataService} from '../signin/service/user-data.service';
 import {UserData} from '../signin/model/UserData';
 import {LastEvaluatedKey} from './model/LastEvaluatedKey';
-// import { ScrollEvent } from 'ngx-scroll-event'
 
 @Component({
   selector: 'app-wall',
@@ -23,7 +22,7 @@ export class WallComponent implements OnInit, OnDestroy {
 
   constructor(private wallService: WallService,
               private usrDataService: UserDataService) {
-    this.wallData  = new WallData();
+    this.wallData = new WallData();
     this.loader = 'loader';
     this.key = 'begin';
     // this.lastEvaluatedKey = new LastEvaluatedKey();
@@ -40,58 +39,33 @@ export class WallComponent implements OnInit, OnDestroy {
   }
 
 
-
-getAllMessagesByTime() {
-  this.loader = 'loader';
-  this.wallService.getAllMessages(this.key)
-    .subscribe( data => {
-      if ( data !== undefined && data.data !== undefined) {
-        if (data.data.LastEvaluatedKey !== undefined) {
-          this.lastEvaluatedKey = new LastEvaluatedKey(data.data.LastEvaluatedKey.year, data.data.LastEvaluatedKey.epoch);
-          // this.lastEvaluatedKey.epoch = data.data.LastEvaluatedKe.epoch;
-          // this.lastEvaluatedKey.year = data.data.LastEvaluatedKe.year;
-        }
-        this.wallData =
-          data.data.Items.sort((a, b) => {
-              return new Date(a.time) == new Date(b.time) ? 0
-                : new Date(a.time) < new Date(b.time) ? 1 : -1;
-            }
-          );
-      }
-      this.loader = 'false';
-      this.toggleTimeAndUser = 'time' ;
-    });
-}
-
-getAllMessagesByTime1(key) {
-  this.loader = 'loader';
-  this.wallService.getAllMessages(key)
-    .subscribe( data => {
-      if ( data !== undefined && data.data !== undefined) {
-        if (data.data.LastEvaluatedKey !== undefined) {
-          this.lastEvaluatedKey = data.data.LastEvaluatedKey;
-        } else {
-          this.lastEvaluatedKey = undefined;
-        }
-        const wallDataLatest = this.wallData;
-        const wallDataNew =
-          data.data.Items.sort((a, b) => {
-              return new Date(a.time) === new Date(b.time) ? 0
-                : new Date(a.time) < new Date(b.time) ? 1 : -1;
-            }
-          );
-        this.wallData = [...wallDataLatest, ...wallDataNew];
-      }
-      this.loader = 'false';
-      this.toggleTimeAndUser = 'time' ;
-    });
-}
-
-  getAllMessagesByUserScroll(key) {
+  getAllMessagesByTime() {
     this.loader = 'loader';
     this.wallService.getAllMessages(this.key)
-      .subscribe( data => {
-        if ( data !== undefined && data.data !== undefined) {
+      .subscribe(data => {
+        if (data !== undefined && data.data !== undefined) {
+          if (data.data.LastEvaluatedKey !== undefined) {
+            this.lastEvaluatedKey = new LastEvaluatedKey(data.data.LastEvaluatedKey.year, data.data.LastEvaluatedKey.epoch);
+            // this.lastEvaluatedKey.epoch = data.data.LastEvaluatedKe.epoch;
+            // this.lastEvaluatedKey.year = data.data.LastEvaluatedKe.year;
+          }
+          this.wallData =
+            data.data.Items.sort((a, b) => {
+                return new Date(a.time) === new Date(b.time) ? 0
+                  : new Date(a.time) < new Date(b.time) ? 1 : -1;
+              }
+            );
+        }
+        this.loader = 'false';
+        this.toggleTimeAndUser = 'time';
+      });
+  }
+
+  getAllMessagesByTime1(key) {
+    this.loader = 'loader';
+    this.wallService.getAllMessages(key)
+      .subscribe(data => {
+        if (data !== undefined && data.data !== undefined) {
           if (data.data.LastEvaluatedKey !== undefined) {
             this.lastEvaluatedKey = data.data.LastEvaluatedKey;
           } else {
@@ -100,27 +74,52 @@ getAllMessagesByTime1(key) {
           const wallDataLatest = this.wallData;
           const wallDataNew =
             data.data.Items.sort((a, b) => {
-              return  a.user_name.localeCompare(b.user_name);
+                return new Date(a.time) === new Date(b.time) ? 0
+                  : new Date(a.time) < new Date(b.time) ? 1 : -1;
               }
             );
           this.wallData = [...wallDataLatest, ...wallDataNew];
         }
         this.loader = 'false';
-        this.toggleTimeAndUser = 'user' ;
+        this.toggleTimeAndUser = 'time';
       });
   }
 
-getAllMessagesByuser() {
-  this.loader = 'loader';
-   const wallDataTemp = this.wallData;
-  this.wallData = wallDataTemp.sort((a, b) => {
-    { return  a.user_name.localeCompare(b.user_name); }
+  getAllMessagesByUserScroll(key) {
+    this.loader = 'loader';
+    this.wallService.getAllMessages(this.key)
+      .subscribe(data => {
+        if (data !== undefined && data.data !== undefined) {
+          if (data.data.LastEvaluatedKey !== undefined) {
+            this.lastEvaluatedKey = data.data.LastEvaluatedKey;
+          } else {
+            this.lastEvaluatedKey = undefined;
+          }
+          const wallDataLatest = this.wallData;
+          const wallDataNew =
+            data.data.Items.sort((a, b) => {
+                return a.user_name.localeCompare(b.user_name);
+              }
+            );
+          this.wallData = [...wallDataLatest, ...wallDataNew];
+        }
+        this.loader = 'false';
+        this.toggleTimeAndUser = 'user';
+      });
   }
 
-);
-  this.loader = 'false';
-  this.toggleTimeAndUser = 'user' ;
-}
+  getAllMessagesByuser() {
+    this.loader = 'loader';
+    const wallDataTemp = this.wallData;
+    this.wallData = wallDataTemp.sort((a, b) => {
+        {
+          return a.user_name.localeCompare(b.user_name);
+        }
+      }
+    );
+    this.loader = 'false';
+    this.toggleTimeAndUser = 'user';
+  }
 
 // public handleScroll(event: ScrollEvent) {
 //   // console.log('scroll occurred', event.originalEvent);
@@ -137,7 +136,7 @@ getAllMessagesByuser() {
 // }
 
   @HostListener('window:scroll', ['$event'])
-populate() {
+  populate() {
     while (true) {
       const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
       if (windowRelativeBottom > document.documentElement.clientHeight + 100) {

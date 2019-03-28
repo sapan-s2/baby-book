@@ -6,6 +6,7 @@ export class UserData {
   private _emailId: string;
   private _name: string;
   private _imageURL: string;
+  private _loginStatus: boolean;
 
   get emailId(): string {
     return this._emailId;
@@ -29,5 +30,13 @@ export class UserData {
 
   set imageURL(value: string) {
     this._imageURL = value;
+  }
+
+  get loginStatus(): boolean {
+    return this._loginStatus;
+  }
+
+  set loginStatus(value: boolean) {
+    this._loginStatus = value;
   }
 }

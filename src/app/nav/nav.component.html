@@ -3,10 +3,13 @@
      <!--<a routerLink="/wall"> Wall </a>-->
   <!--</nav>-->
 
-
-  <ul *ngIf="userDataForSession.emailId !== undefined">
+<div *ngIf="userDataForSession.emailId !== undefined && userDataForSession.loginStatus">
+  <ul >
     <li><a class="" routerLink="/home">Home</a></li>
     <li><a routerLink= "/wall">Wall</a></li>
     <li><a routerLink= "/privacy">Privacy</a></li>
     <li><a routerLink= "/contact">Contact Us</a></li>
   </ul>
+  <a class="logout" *ngIf="userDataForSession.emailId !== undefined" (click)="logout()"> Logout</a>
+</div>
+

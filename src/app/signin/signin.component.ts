@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {UserDataService} from './service/user-data.service';
 import {UserData} from './model/UserData';
 import {embeddedViewEnd} from '@angular/core/src/render3/instructions';
+import {UserAuthService} from './service/user-auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,28 +13,18 @@ import {embeddedViewEnd} from '@angular/core/src/render3/instructions';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private socialAuthService: SocialAuthService,
-              private router: Router,
-              private userDataService: UserDataService) {
+  constructor(private userAuth: UserAuthService) {
   }
 
   ngOnInit() {
   }
 
   public facebookLogin() {
-    const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-
-        console.log(userData.email);
-        this.sendToRestApiMethod(userData.email, userData.name, userData.image);
-        this.router.navigate(['home']);
-      }
-    );
+    this.userAuth.facebookLogin();
   }
 
-  sendToRestApiMethod(name: string, email: string, imageURL: string): void {
-    this.userDataService.setUserDataForSession(name, email, imageURL);
+  public facebookLogOut() {
+    this.userAuth.facebookLogOut();
   }
 
 }
